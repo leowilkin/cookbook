@@ -1,26 +1,33 @@
 ---
 import Author from './Author.astro';
+import CookingTime from './CookingTime.astro';
+import Ingredients from './Ingredients.astro';
 
 export interface Props {
 	title: string;
 	author: string;
-	authorURL: string;
+	mealType: string;
+	prepTime: string;
+	cookTime: string;
 	publishDate: string;
-	heroImage: string;
+	image: string;
+	ingredients: string;
 	alt: string;
 }
 
-const { title, author, authorURL, publishDate, heroImage, alt } = Astro.props as Props;
+const { title, author, prepTime, cookTime, image, ingredients, mealType, publishDate, alt } = Astro.props as Props;
 ---
 
 <div class="layout">
 	<article class="content">
 		<div>
 			<header>
-				{heroImage && <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt={alt} />}
+				{image && <img width="720" height="420" class="hero-image" loading="lazy" src={image} alt={alt} />}
 				<p class="publish-date">{publishDate}</p>
 				<h1 class="title">{title}</h1>
-				<Author name={author} href={authorURL} />
+				<Author name={author} />
+				<CookingTime prepTime={prepTime} cookTime={cookTime} mealType={mealType}/>
+				<Ingredients ingredients={ingredients} />
 			</header>
 			<main>
 				<slot />

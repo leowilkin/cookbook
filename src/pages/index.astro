@@ -10,13 +10,13 @@ import { SITE } from '../config';
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
 let { title } = SITE;
-let description = 'The perfect starter for your perfect blog.';
-let permalink = 'https://example.com/';
+let description = 'Our selection of recipes that we use at home.';
+let permalink = 'https://wilkin-cook.netlify.app/';
 
 // Data Fetching: List all Markdown posts in the repo.
 
-let allPosts = await Astro.glob('./posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+let allRecipes = await Astro.glob('./recipes/*.md');
+allRecipes = allRecipes.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -74,8 +74,8 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 					<h1 class="latest">{title}</h1>
 					<p>{description}</p>
 				</section>
-				<section aria-label="Blog post list">
-					{allPosts.map((p) => <BlogPostPreview post={p} />)}
+				<section aria-label="Recipes list">
+					{allRecipes.map((p) => <BlogPostPreview post={p} />)}
 				</section>
 			</main>
 			<footer>

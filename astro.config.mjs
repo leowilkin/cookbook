@@ -12,19 +12,31 @@ export default defineConfig({
           branch: 'latest',
         },
         // Configure where our media assets are stored & served from
-        media_folder: 'public/assets/blog',
-        public_folder: '/assets/blog',
+        media_folder: 'public/assets/cookbook',
+        public_folder: '/assets/cookbook',
+        // Configure the site-specifics
+        site_url: 'https://wilkin-cook.netlify.app',
+        display_url: 'https://wilkin-cook.netlify.app',
+
         // Configure the content collections
         collections: [
           {
-            name: 'posts',
-            label: 'Blog Posts',
-            label_singular: 'Blog Post',
-            folder: 'src/pages/posts',
+            slug: "{{title}}",
+            name: 'recipes',
+            label: 'Recipes',
+            label_singular: 'Recipe',
+            folder: 'src/pages/recipes',
             create: true,
             delete: true,
             fields: [
-              { name: 'title', widget: 'string', label: 'Post Title' },
+              { name: 'title', widget: 'string', label: 'Dish Name' },
+              { name: 'author', widget: 'string', label: 'Author Name', required: false },
+              { name: 'description', widget: 'string', label: 'Description', required: false },
+              { name: 'ingredients', widget: 'text', label: 'Ingredients' },
+              { name: 'body', widget: 'markdown', label: 'Recipe Instructions' },
+              { name: 'image', widget: 'image', label: 'Image', required: false },
+              { name: 'prepTime', widget: 'string', label: 'Prep Time', required: false },
+              { name: 'cookTime', widget: 'string', label: 'Cook Time', required: false },
               {
                 name: 'publishDate',
                 widget: 'datetime',
@@ -33,16 +45,24 @@ export default defineConfig({
                 time_format: false,
                 label: 'Publish Date',
               },
-              { name: 'author', widget: 'string', label: 'Author Name', required: false },
-              { name: 'authorURL', widget: 'string', label: 'Author URL', required: false },
-              { name: 'description', widget: 'string', label: 'Description', required: false },
-              { name: 'body', widget: 'markdown', label: 'Post Body' },
+              {
+                name: 'mealType',
+                widget: 'select',
+                default: 'Snack',
+                options: [
+                  { label: 'Snack', value: 'Snack' },
+                  { label: 'Breakfast', value: 'Breakfast' },
+                  { label: 'Lunch', value: 'Lunch' },
+                  { label: 'Dinner', value: 'Dinner' },
+                  { label: 'Dessert', value: 'Dessert' },
+                ],
+              },
               {
                 name: 'layout',
                 widget: 'select',
                 default: '../../layouts/BlogPost.astro',
                 options: [
-                  { label: 'Blog Post', value: '../../layouts/BlogPost.astro' },
+                  { label: 'Recipe Card', value: '../../layouts/BlogPost.astro' },
                 ],
               },
             ],

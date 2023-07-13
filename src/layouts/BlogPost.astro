@@ -1,10 +1,10 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import BlogHeader from '../components/BlogHeader.astro';
-import BlogPost from '../components/BlogPost.astro';
+import BlogPostComponent from '../components/BlogPost.astro';
 
 const { content } = Astro.props;
-const { title, description, publishDate, author, authorURL, heroImage, permalink, alt } = content;
+const { title, author, description, image, ingredients, publishDate, mealType, prepTime, cookTime, heroImage, permalink, alt } = content;
 ---
 
 <html lang={content.lang || 'en'}>
@@ -15,9 +15,9 @@ const { title, description, publishDate, author, authorURL, heroImage, permalink
 	<body>
 		<BlogHeader />
 		<div class="wrapper">
-			<BlogPost {title} {author} {authorURL} {heroImage} {publishDate} {alt}>
+			<BlogPostComponent {title} {author} {prepTime} {cookTime} {ingredients} {mealType} {image} {publishDate} {alt}>
 				<slot />
-			</BlogPost>
+			</BlogPostComponent>
 		</div>
 	</body>
 </html>

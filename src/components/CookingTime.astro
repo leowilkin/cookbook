@@ -1,0 +1,21 @@
+---
+export interface Props {
+	prepTime: string;
+    cookTime: string;
+    mealType: string;
+}
+
+const { prepTime, cookTime, mealType } = Astro.props;
+---
+
+<div class="cooking-time">
+    <p>Meal: {mealType}</p>
+	<p>Prep Time: {prepTime}</p>
+    <p>Cook Time: {cookTime}</p>
+</div>
+
+<style>
+	.cooking-time {
+		margin-bottom: 0.75rem;
+	}
+</style>
