@@ -1,7 +1,6 @@
 ---
 import Author from './Author.astro';
 import CookingTime from './CookingTime.astro';
-import Ingredients from './Ingredients.astro';
 
 export interface Props {
 	title: string;
@@ -15,7 +14,7 @@ export interface Props {
 	alt: string;
 }
 
-const { title, author, prepTime, cookTime, image, ingredients, mealType, publishDate, alt } = Astro.props as Props;
+const { title, author, prepTime, cookTime, image, mealType, publishDate, alt } = Astro.props as Props;
 ---
 
 <div class="layout">
@@ -27,7 +26,6 @@ const { title, author, prepTime, cookTime, image, ingredients, mealType, publish
 				<h1 class="title">{title}</h1>
 				<Author name={author} />
 				<CookingTime prepTime={prepTime} cookTime={cookTime} mealType={mealType}/>
-				<Ingredients ingredients={ingredients} />
 			</header>
 			<main>
 				<slot />
